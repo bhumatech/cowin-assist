@@ -1,10 +1,10 @@
 <div align="center">
-<h1>Cowin Assist Telegram Bot</h1>
+<h1>CovidSeva Bot</h1>
 <br>
-<img src="https://user-images.githubusercontent.com/640792/117273073-698c2480-ae79-11eb-988f-0770728f0d2c.jpeg" width="200"/>
+<img src="" width="200"/>
 </div>
 
-Check the bot here [@cowinassistbot](https://t.me/cowinassistbot).
+Check the bot here [@covidsevabot](https://t.me/CovidSevabot).
 
 This is a simple Telegram bot to
 
@@ -20,7 +20,7 @@ On 6th May 2021, CoWin API added caching and rate limits. The public API data wo
 
 ## Installation and Deployment
 
-Following section helps you host the bot on your own servers. 
+Following section helps you host the bot on your own servers.
 
 ### Prerequisites
 

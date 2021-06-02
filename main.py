@@ -154,11 +154,11 @@ def start(update: Update, _: CallbackContext) -> None:
     Handles /start, the very first message the user gets whenever they start interacting with this bot
     """
     msg = """Hey there!👋
-Welcome to CoWin Assist bot. 
+Welcome to Covid Seva Bot.
 
 I will weekly check slots availability in your area and display them. To start click 🔍 *Check Open Slots*.
 
-If you are a first time user I will ask for your age and pincode."""
+If you are a first time user please tell us your age and area Pin Code to serve you"""
     update.message.reply_text(msg, reply_markup=get_main_keyboard(), parse_mode="markdown")
 
 
@@ -192,7 +192,7 @@ def cmd_button_handler(update: Update, ctx: CallbackContext) -> None:
 
 
 def get_help_text_short() -> str:
-    return """This bot will help you to see current available slots by checking CoWin website. To start, click on "Check Open Slots". For first time users, bot will ask for age preference and pincode."""  ## noqa
+    return """Covid Seva bot will help you to see current available slots by checking CoWin website. To start, click on "Check Open Slots". For first time users, bot will ask for age preference and pincode."""  ## noqa
 
 
 def get_help_text() -> str:
@@ -219,7 +219,7 @@ def delete_cmd_handler(update: Update, _: CallbackContext):
     user.pincode = None
     user.age_limit = AgeRangePref.Unknown
     user.save()
-    update.effective_chat.send_message("Your data has been successfully deleted. Click on /start to restart the bot.")
+    update.effective_chat.send_message("Your data has been successfully deleted. Click on /start to restart the Covid Seva bot.")
 
 
 def help_command(update: Update, ctx: CallbackContext) -> None:
@@ -228,7 +228,7 @@ def help_command(update: Update, ctx: CallbackContext) -> None:
 
 def privacy_policy_handler(update: Update, _: CallbackContext):
     header = "🔒 Privacy Policy\n\n"
-    msg = F"CoWin Assist Bot stores minimal and only the information which is necessary. This includes:\n" \
+    msg = F"Covid Seva Bot stores minimal and only the information which is necessary. This includes:\n" \
           "  • Telegram account user id ({id})\n" \
           "  • The pincode to search in CoWin site\n" \
           "  • Age preference\n" \
@@ -265,13 +265,13 @@ def check_if_preferences_are_set(update: Update, ctx: CallbackContext) -> Option
 
 def get_disabled_alerts_msg() -> str:
     return """
-Hello there!👋 
+Hello there!👋
 
-Due to recent changes made by Govt for the CoWin website, the bot will not be able to send alerts efficiently. Thereby, we are disabling the alerts permanently. Sorry for the inconvenience. 
+Due to recent changes made by Govt for the CoWin website, the bot will not be able to send alerts efficiently. Thereby, we are disabling the alerts permanently. Sorry for the inconvenience.
 
 If you would like to delete your data, click on /delete to permanently delete. Check /help for more available options.
 
-If you are a developer and interested in running the bot by yourself, you may check the source code on [Github](https://github.com/avinassh/cowin-assist).
+
         """
 
 
@@ -286,7 +286,7 @@ def setup_alert_command(update: Update, ctx: CallbackContext) -> None:
     user.enabled = True
     user.save()
 
-    msg = "🔔 I have setup alerts for you. "
+    msg = "🔔 Covid Seva have setup alerts for you. "
     msg_18 = "For age group 18+, as soon as a slot becomes available I will send you a message. "
     msg_45 = "For age group 45+, I will check slots availability for every 15 minutes and send a message if they are " \
              "available. "
@@ -386,7 +386,7 @@ def check_slots_command(update: Update, ctx: CallbackContext) -> None:
     vaccination_centers = filter_centers_by_age_limit(user.age_limit, vaccination_centers)
     if not vaccination_centers:
         update.effective_chat.send_message(
-            F"Hey sorry, seems there are no free slots available (pincode: {user.pincode}, age preference: {user.age_limit})")
+            "Hey sorry, seems there are no free slots available (pincode: {user.pincode}, age preference: {user.age_limit})")
         return
 
     msg: str = get_formatted_message(centers=vaccination_centers, age_limit=user.age_limit)
@@ -396,7 +396,7 @@ def check_slots_command(update: Update, ctx: CallbackContext) -> None:
 
 
 def default(update: Update, _: CallbackContext) -> None:
-    update.message.reply_text("Sorry, I did not understand. Click on /help to know valid commands")
+    update.message.reply_text("Sorry, I did not understand. Click on /help to know valid inputs")
 
 
 def get_or_create_user(telegram_id: str, chat_id) -> (User, bool):
@@ -435,7 +435,7 @@ def set_pincode(update: Update, ctx: CallbackContext) -> None:
     # validating pincode is the third difficult problem of computer science
     if pincode in ["000000", "111111", "123456"] or not len(pincode) == 6:
         update.effective_chat.send_message("Uh oh! That doesn't look like a valid pincode."
-                                           "Please enter a valid pincode to proceed")
+                                           "Please enter a valid pincode to proceed and serve you")
         return
     user: User
     user, _ = get_or_create_user(telegram_id=update.effective_user.id, chat_id=update.effective_chat.id)
